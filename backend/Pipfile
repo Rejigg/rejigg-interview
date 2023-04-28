@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-rest-framework = "*"
+django-filter = "*"
+django-cors-headers = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+dev = "./start.sh"
+seed = "./manage.py seed"

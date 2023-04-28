@@ -1,0 +1,36 @@
+---
+
+version: "3.9"
+
+services:
+  backend:
+    command: pipenv run dev
+    container_name: rejigg_interview_backend
+    build: ./backend
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/code
+    environment:
+      - ENV=development
+
+  frontend:
+    container_name: rejigg_interview_frontend
+    command: npm run start
+    build: ./frontend
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/code
+      - /code/node_modules
+    restart: always
+    environment:
+      - NODE_ENV=development
+
+
